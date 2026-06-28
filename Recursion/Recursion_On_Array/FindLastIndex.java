@@ -1,13 +1,18 @@
 public class FindLastIndex{
 
     public static int findLastIndex(int arr[],int idx,int tar){
-        if(idx >= arr.length) return -1;
+        // base case
+        if(idx == arr.length) return -1;
+        
+        // Faith --> Function will return last index of target from idx+1 to (n-1) elements
+        int furtherIndex = findLastIndex(arr,idx+1,tar);
 
-        int lastIdx = findLastIndex(arr,idx+1,tar);
+        // MYJob --> check if furtherIndex exist otherwise check current index value == target or not
 
-        if(lastIdx == -1 && arr[idx] == tar) return idx;
+        if(furtherIndex != -1) return furtherIndex;
 
-        return lastIdx;
+
+        return arr[idx] == tar ? idx : -1;
     }
     
     public static void main(String args[]){
